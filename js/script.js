@@ -11,18 +11,20 @@
  * The 'async' keyword is used because it will take time from the internet to get data
  */
 /* eslint-disable no-unused-vars */
-async function getJoke () {
+async function getJoke() {
   try {
-    const response = await fetch(
-      'https://sv443.net/jokeapi/v2/joke/Any'
-    )
-    const data = await response.json()
-    console.log(data)
+    const resultJSON = await fetch("https://official-joke-api.appspot.com/random_joke")
+    const jsonData = await resultJSON.json()
+    console.log(jsonData)
 
-    // Output the fun fact to the page
-    document.getElementById('show-joke').innerHTML =
-      '<b>Joke:</b> "' + data.fact + '"<br />'
+    // Get the excuse and its category
+    const setup = jsonData.setup
+    const punchline = jsonData.punchline
+
+    // Output
+    document.getElementById("show-joke").innerHTML =
+      "<p>Joke: " + setup + "</br>Answer: " + punchline + " </p>"
   } catch (error) {
-    console.error(error)
+    document.getElementById("show-joke").innerHTML = "Sorry, an error has occurred. Please try again later."
   }
 }
