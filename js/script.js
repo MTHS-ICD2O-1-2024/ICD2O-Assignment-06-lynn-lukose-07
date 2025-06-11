@@ -14,7 +14,7 @@
 async function getJoke () {
   try {
     const response = await fetch(
-      'https://catfact.ninja/fact'
+      'https://sv443.net/jokeapi/v2/joke/Any'
     )
     const data = await response.json()
     console.log(data)
